@@ -1,7 +1,7 @@
-﻿<Window x:Class="CodeRunner.MainWindow"
+﻿<Window x:Name="WHVAutoFill" x:Class="CodeRunner.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Working Holiday Application AutoFill 1.0  Coded by RockyMay" Height="710" Width="860" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" WindowStyle="ThreeDBorderWindow"  WindowStartupLocation="CenterScreen" MinWidth="860" MinHeight="710">
+        Title="Working Holiday Application AutoFill 1.0  Coded by RockyMay" Height="710" Width="860" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" WindowStyle="ThreeDBorderWindow"  WindowStartupLocation="CenterScreen" MinWidth="860" MinHeight="710" Icon="个人头像.ico">
     <Grid Margin="10,0,-8,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

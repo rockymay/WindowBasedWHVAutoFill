@@ -141,7 +141,7 @@ namespace CodeRunner
                 {
                     outText.Text += DateTime.Now.ToString("HH:mm:ss") + "  " + "Trying to apply for :" + i + Environment.NewLine;
                     //There is no form
-                    new SelectElement(driver.FindElement(By.Id(countryListId))).SelectByValue("82"); //46=China, 82=Germany
+                    new SelectElement(driver.FindElement(By.Id(countryListId))).SelectByValue(countryCodeTextBox.Text); //46=China, 82=Germany
 
                     //OKBtn.Click();
                     driver.FindElement(By.Id(okBtnId)).Click();
@@ -271,7 +271,7 @@ namespace CodeRunner
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_addressContactDetails_address_address1TextBox")).SendKeys(addressTextBox.Text);
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_addressContactDetails_address_suburbTextBox")).SendKeys(suburbTextBox.Text);
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_addressContactDetails_address_cityTextBox")).SendKeys(suburbTextBox.Text);
-            new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_addressContactDetails_address_countryDropDownList"))).SelectByValue("82");//46=China, 82=Germany
+            new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_addressContactDetails_address_countryDropDownList"))).SelectByValue(countryCodeTextBox.Text);//46=China, 82=Germany
 
             //Gender & DOB
             new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_personDetails_genderDropDownList"))).SelectByValue(genderTextBox.Text.ToUpper());
@@ -281,7 +281,7 @@ namespace CodeRunner
 
 
             //Country
-            new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_personDetails_CountryDropDownList"))).SelectByValue("82"); //46=China, 82=Germany
+            new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_personDetails_CountryDropDownList"))).SelectByValue(countryCodeTextBox.Text); //46=China, 82=Germany
             //Agent?Email?VisaCard?
             new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_hasAgent_representedByAgentDropdownlist"))).SelectByValue("No");
             new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_communicationMethod_communicationMethodDropDownList"))).SelectByValue("1");

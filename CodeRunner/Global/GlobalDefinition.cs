@@ -14,8 +14,7 @@ namespace CodeRunner.Global
 {
     class GlobalDefinition
     {
-        //public static IWebDriver driver { get; set; }
-
+        public static IWebDriver driver { get; set; }
         
         public static void TextBox(IWebDriver driver, string locator, string locatorValue, string inputValue)
         {
@@ -103,58 +102,61 @@ namespace CodeRunner.Global
             dataCol.Clear();
         }
 
-
-        private static DataTable ExcelToDataTable(string fileName, string SheetName)
-        {
-            // Open file and return as Stream
-            using (System.IO.FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
-            {
-                using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
+        /*
+                private static DataTable ExcelToDataTable(string fileName, string SheetName)
                 {
-                    excelReader.IsFirstRowAsColumnNames = true;
+                    // Open file and return as Stream
+                    using (System.IO.FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
+                        {
+                            excelReader.IsFirstRowAsColumnNames = true;
 
-                    //Return as dataset
-                    DataSet result = excelReader.AsDataSet();
-                    //Get all the tables
-                    DataTableCollection table = result.Tables;
+                            //Return as dataset
+                            DataSet result = excelReader.AsDataSet();
+                            //Get all the tables
+                            DataTableCollection table = result.Tables;
 
-                    // store it in data table
-                    DataTable resultTable = table[SheetName];
+                            // store it in data table
+                            DataTable resultTable = table[SheetName];
 
-                    //excelReader.Dispose();
-                    //excelReader.Close();
-                    // return
-                    return resultTable;
+                            //excelReader.Dispose();
+                            //excelReader.Close();
+                            // return
+                            return resultTable;
+                        }
+                    }
                 }
-            }
-        }
+        */
+        /*
+                public static string ReadData(int rowNumber, string columnName)
+                {
+                    try
+                    {
+                        //Retriving Data using LINQ to reduce much of iterations
 
-        public static string ReadData(int rowNumber, string columnName)
-        {
-            try
-            {
-                //Retriving Data using LINQ to reduce much of iterations
+                        rowNumber = rowNumber - 1;
+                        string data = (from colData in dataCol
+                                       where colData.colName == columnName && colData.rowNumber == rowNumber
+                                       select colData.colValue).SingleOrDefault();
 
-                rowNumber = rowNumber - 1;
-                string data = (from colData in dataCol
-                               where colData.colName == columnName && colData.rowNumber == rowNumber
-                               select colData.colValue).SingleOrDefault();
-
-                //var datas = dataCol.Where(x => x.colName == columnName && x.rowNumber == rowNumber).SingleOrDefault().colValue;
+                        //var datas = dataCol.Where(x => x.colName == columnName && x.rowNumber == rowNumber).SingleOrDefault().colValue;
 
 
-                return data.ToString();
-            }
+                        return data.ToString();
+                    }
 
-            catch (Exception e)
-            {
-                //Added by Kumar
-                Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
-                return null;
-            }
-        }
+                    catch (Exception e)
+                    {
+                        //Added by Kumar
+                        Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
+                        return null;
+                    }
+                }
+        */
 
-        public static void PopulateInCollection(string fileName, string SheetName)
+        /*
+         * public static void PopulateInCollection(string fileName, string SheetName)
         {
             ExcelLib.ClearData();
             DataTable table = ExcelToDataTable(fileName, SheetName);
@@ -179,6 +181,7 @@ namespace CodeRunner.Global
             }
 
         }
+         */
     }
 
 

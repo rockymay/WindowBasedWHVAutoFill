@@ -89,7 +89,6 @@
     </Compile>
     <Compile Include="Global\ExtensionIWebElement.cs" />
     <Compile Include="Global\GlobalDefinition.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

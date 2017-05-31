@@ -23,9 +23,9 @@
             <TextBox x:Name="passwordTextBox" TextWrapping="Wrap"
                 FontSize="14" Height="25" VerticalAlignment="Top" Canvas.Left="102" Canvas.Top="31" Width="120" HorizontalAlignment="Left" Text="Wang2017god" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="url1TextBox" TextWrapping="Wrap"
-                FontSize="14" Height="52" VerticalAlignment="Top" Canvas.Left="298" Width="453" Text="http://onlineservices.immigration.govt.nz/secure/Login+Working+Holiday.htm?_ga=1.116740868.305272213.1484108859"/>
+                FontSize="14" Height="52" VerticalAlignment="Top" Canvas.Left="298" Width="453" Text="https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=46"/>
             <TextBox x:Name="url2TextBox" TextWrapping="Wrap"
-                FontSize="14" Height="26" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.346" Canvas.Left="298" Canvas.Top="64" Width="453" Text="http://onlineservices.immigration.govt.nz/WorkingHoliday/"/>
+                FontSize="14" Height="26" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.346" Canvas.Left="298" Canvas.Top="64" Width="453" Text="http://onlineservices.immigration.govt.nz" />
             <TextBox x:Name="attempNo" TextWrapping="Wrap"
                 FontSize="18" Height="25" VerticalAlignment="Top" Width="120" Text="10" HorizontalAlignment="Right" FontWeight="Bold" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="102" Canvas.Top="65" VerticalContentAlignment="Center">
                 <TextBox.RenderTransform>
@@ -52,8 +52,9 @@
             <Label Content="Birth Year" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="28" Canvas.Top="116"/>
             <TextBox x:Name="birthDay" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="64" MaxLength="2"/>
+            
             <TextBox x:Name="birthMonth" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="94" MaxLength="2"/>
-            <TextBox x:Name="birthYear" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="124" MaxLength="2"/>
+            <TextBox x:Name="birthYear" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="124" MaxLength="4"/>
             <TextBox x:Name="genderTextBox" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.245,0.783" Canvas.Left="127" Canvas.Top="154" MaxLength="1"/>
             <Label Content="Gender: M/F" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.068,0.697" Canvas.Left="8" Canvas.Top="146"/>

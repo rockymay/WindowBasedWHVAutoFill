@@ -11,13 +11,13 @@
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
         <Canvas Margin="34,20,112,642" Grid.ColumnSpan="4">
-           
+
             <Label x:Name="label" Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18"/>
             <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="31"/>
-            <Label x:Name="label_Copy1" Content="Retry No." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="57"/>
+            <Label x:Name="label_Copy1" Content="Retry No." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="57" Visibility="Hidden"/>
             <Label x:Name="label_Copy2" Content="URL-1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235"/>
             <Label x:Name="label_Copy3" Content="URL-2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235" Canvas.Top="57"/>
-            
+
             <TextBox x:Name="usernameTextBox" TextWrapping="Wrap"
                 FontSize="14" Height="25" VerticalAlignment="Center" Canvas.Left="102" Width="120" Text="wangchenc001" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="passwordTextBox" TextWrapping="Wrap"
@@ -27,7 +27,7 @@
             <TextBox x:Name="url2TextBox" TextWrapping="Wrap"
                 FontSize="14" Height="26" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.346" Canvas.Left="298" Canvas.Top="64" Width="453" Text="http://onlineservices.immigration.govt.nz" />
             <TextBox x:Name="attempNo" TextWrapping="Wrap"
-                FontSize="18" Height="25" VerticalAlignment="Top" Width="120" Text="10" HorizontalAlignment="Right" FontWeight="Bold" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="102" Canvas.Top="65" VerticalContentAlignment="Center">
+                FontSize="18" Height="25" VerticalAlignment="Top" Width="120" Text="10" HorizontalAlignment="Right" FontWeight="Bold" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="102" Canvas.Top="65" VerticalContentAlignment="Center" Visibility="Hidden">
                 <TextBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -37,7 +37,8 @@
                     </TransformGroup>
                 </TextBox.RenderTransform>
             </TextBox>
-        </Canvas>         <!--Username& Password-->
+        </Canvas>
+        <!--Username& Password-->
         <Canvas Margin="9,123,139,412" Grid.ColumnSpan="3">
             <TextBox x:Name="fNameTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Width="120" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="4"/>
             <Label Content="Family Name" HorizontalAlignment="Left" 
@@ -52,13 +53,19 @@
             <Label Content="Birth Year" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="28" Canvas.Top="116"/>
             <TextBox x:Name="birthDay" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="64" MaxLength="2"/>
-            
+
             <TextBox x:Name="birthMonth" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="94" MaxLength="2"/>
             <TextBox x:Name="birthYear" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="127" Canvas.Top="124" MaxLength="4"/>
-            <TextBox x:Name="genderTextBox" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.245,0.783" Canvas.Left="127" Canvas.Top="154" MaxLength="1"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Height="25" Width="120
+" SelectedIndex="0" Name="genderSelectCombobox" RenderTransformOrigin="1.566,6.88" Canvas.Left="127" Canvas.Top="158">
+                <ComboBoxItem Content="Male" Name="M"></ComboBoxItem>
+                <ComboBoxItem Content="Female" Name="F"></ComboBoxItem>
+
+            </ComboBox>
             <Label Content="Gender: M/F" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.068,0.697" Canvas.Left="8" Canvas.Top="146"/>
-        </Canvas>                   <!--Personal Details-->
+        </Canvas>
+        <!--Personal Details-->
         <Canvas Margin="10,126,111,465" Grid.Column="2" Grid.ColumnSpan="2">
             <TextBox x:Name="countryCodeTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" Width="120" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="129" Canvas.Top="3" Text="46" Background="White" Foreground="#FFFF0808" FontWeight="Bold" MaxLines="1" MaxLength="2"/>
             <Label Content="Address" HorizontalAlignment="Left" 
@@ -72,8 +79,9 @@
             <TextBox x:Name="cityTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="129" Canvas.Top="93"/>
             <Label Content="CountryCode" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18"/>
-            
-        </Canvas>   <!--Address-->
+
+        </Canvas>
+        <!--Address-->
         <Canvas Margin="6,314,104,277" Grid.ColumnSpan="3">
             <TextBox x:Name="passportTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" Canvas.Top="1"/>
             <TextBox x:Name="expireDay" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Canvas.Top="31" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" MaxLength="2"/>
@@ -88,9 +96,10 @@
             <Label Content="Expire Year" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="20" Canvas.Top="83"/>
 
-        </Canvas>                   <!--Passport-->
+        </Canvas>
+        <!--Passport-->
         <Canvas Margin="6,455,82,137" Grid.ColumnSpan="3">
-          <Label Content="National ID" HorizontalAlignment="Left" 
+            <Label Content="National ID" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" Canvas.Left="17" Canvas.Top="-8"/>
             <Label Content="Issue Month" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Top="52" Canvas.Left="8"/>
@@ -100,16 +109,16 @@
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="33" Canvas.Top="22"/>
             <Label Content="(Optional)" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="10" Canvas.Left="250" FontStyle="Italic"/>
-            
-            <TextBox x:Name="idTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="issueDay" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Canvas.Top="30" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" MaxLength="2"/>
             <TextBox x:Name="issueMonth" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Canvas.Top="60" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" MaxLength="2"/>
             <TextBox x:Name="issueYear" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="130" Canvas.Top="90" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" MaxLength="4"/>
-            
-        </Canvas>                    <!--Other ID-->
-        <Canvas Margin="58,279,262,295" Grid.Column="2" Grid.ColumnSpan="2">
-            <CheckBox x:Name="beenCheckBox" Content="Been to NZ?" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontSize="18" Canvas.Left="54"/>
-            <Label Content="Month" HorizontalAlignment="Left" 
+
+        </Canvas>
+        <!--Other ID-->
+        <CheckBox x:Name="beenCheckBox" Content="Been to NZ?" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontSize="18" Canvas.Left="54" Grid.ColumnSpan="2" Grid.Column="2" Margin="95,278,0,0" Checked="beenCheckBox_Checked" Unchecked="beenCheckBox_Unchecked"/>
+
+        <Canvas Margin="58,279,262,295" Grid.Column="2" Grid.ColumnSpan="2" Name="beentoNZGrid" Visibility="Hidden">
+           <Label Content="Month" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Top="57"/>
             <Label Content="Year" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="15" Canvas.Top="86"/>
@@ -118,9 +127,10 @@
             <TextBox x:Name="beenYearTextBox" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" HorizontalContentAlignment="Center" Canvas.Left="81" Canvas.Top="93" Width="120" HorizontalAlignment="Center" VerticalContentAlignment="Center" MaxLength="5"/>
             <Label Content="Day" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="20" Canvas.Top="31"/>
-          
-        </Canvas>   <!--Been to NZ?-->
-       <Canvas Margin="71,440,255,153" Grid.Column="2" Grid.ColumnSpan="2">
+
+        </Canvas>
+        <!--Been to NZ?-->
+        <Canvas Margin="71,440,255,153" Grid.Column="2" Grid.ColumnSpan="2">
             <Label x:Name="label1" Content="Intend Travel " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="20"/>
             <Label x:Name="label1_Copy" Content="Day" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="20" Canvas.Top="25"/>
             <Label x:Name="label1_Copy1" Content="Month" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="53"/>
@@ -129,7 +139,8 @@
             <TextBox x:Name="intendTravelMonth" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" Canvas.Left="68" Canvas.Top="61" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MaxLength="2"/>
             <TextBox x:Name="intendTravelYear" Height="25" TextWrapping="Wrap" Text="2018" VerticalAlignment="Center" Width="120" Canvas.Left="68" Canvas.Top="89" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" MaxLength="4"/>
 
-        </Canvas> <!--Intend Travel Date-->
+        </Canvas>
+        <!--Intend Travel Date-->
         <Canvas Grid.Column="3" Margin="173,278,28,296" Grid.ColumnSpan="2">
             <TextBox x:Name="cardHolderTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="5"/>
             <TextBox x:Name="visaType" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="V" Canvas.Left="98" Canvas.Top="28" MaxLength="1" MaxLines="2"/>
@@ -148,8 +159,11 @@
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" 
                 Click="RunCode" FontSize="18" Width="90" Height="40" Canvas.Left="128" Canvas.Top="197"/>
             <Button x:Name="btnClear" Content="Clear" 
-                Click="ClearOutput" FontSize="18" Width="180" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="38" Canvas.Top="237" />
-        </Canvas>  <!--Payment Detail-->
+                Click="ClearOutput" FontSize="18" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="38" Canvas.Top="237" />
+            <Button x:Name="loadTestData" Content="load test data" 
+                Click="loadTestData_Click" FontSize="14" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="128" Canvas.Top="237" />
+        </Canvas>
+        <!--Payment Detail-->
         <TextBox x:Name="outText" HorizontalAlignment="Left" Height="57" Margin="6,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="808" VerticalScrollBarVisibility="Visible" FontSize="10" VerticalContentAlignment="Bottom" Grid.ColumnSpan="5" />
 
     </Grid>

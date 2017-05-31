@@ -4,6 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -46,18 +47,29 @@ namespace CodeRunner
 
             //}).Start();
 
-            IWebDriver driver = new ChromeDriver();
-            StartNow(driver);
+            try {
+                IWebDriver driver = new ChromeDriver();
+                driver.Manage().Window.Maximize();
+
+                StartNow(driver);
+            }
+            catch { }
 
         }
 
         private void ClearOutput(object sender, RoutedEventArgs e)
         {
-
+            foreach (var process in Process.GetProcessesByName("chromedriver"))
+            {
+                process.Kill();
+            }
+           foreach (var process in Process.GetProcessesByName("conhost"))
+            {
+                process.Kill();
+            }
             outText.Text = "";
-            //usernameTextBox.Text = "";
-            //passwordTextBox.Text = "";
-           
+            formUrlTextbox.Text= "https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=46";
+            baseUrlTextbox.Text = "https://onlineservices.immigration.govt.nz/WorkingHoliday/";
             fNameTextBox.Text = "";
             gNameTextBox.Text = "";
             addressTextBox.Text = "";
@@ -81,7 +93,6 @@ namespace CodeRunner
             cardMonthTextBox.Text = "";
             cardNoTextBox.Text = "";
             cardYearTextBox.Text = "";
-            visaType.Text = "V";
 
 
         }
@@ -90,7 +101,7 @@ namespace CodeRunner
 
           
             outText.Text = "";
-          
+            formUrlTextbox.Text = "https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=82";
             fNameTextBox.Text = "Xiaohong";
             gNameTextBox.Text = "Sun";
             addressTextBox.Text = "Road 56 Ave";
@@ -114,7 +125,7 @@ namespace CodeRunner
             cardMonthTextBox.Text = "12";
             cardNoTextBox.Text = "19";
             cardYearTextBox.Text = "2020";
-            visaType.Text = "V";
+          
             cardCVCTextBox.Text = "178";
 
 
@@ -128,11 +139,12 @@ namespace CodeRunner
         {
 
 
-            driver.Navigate().GoToUrl(url2TextBox.Text);
+            driver.Navigate().GoToUrl("https://onlineservices.immigration.govt.nz/");
 
-            driver.Manage().Window.Maximize();
 
             //Login attemp
+            WaitForElement(driver, By.Name("username"),5);
+
             driver.FindElement(By.Name("username")).EnterValue(usernameTextBox.Text);
             driver.FindElement(By.Name("password")).EnterValue(passwordTextBox.Text);
             driver.FindElement(By.XPath("/html/body/div/form/div/div[3]/div/div[2]/div[3]/input")).Click();
@@ -141,7 +153,7 @@ namespace CodeRunner
 
 
 
-            driver.Navigate().GoToUrl("https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=24");
+            driver.Navigate().GoToUrl(formUrlTextbox.Text);
 
 
             string page = string.Empty;
@@ -150,23 +162,33 @@ namespace CodeRunner
             while (page.Contains("There is no scheme open for this country."))
             {
                 Thread.Sleep(2000);
-                driver.Navigate().GoToUrl("https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=24");
+                driver.Navigate().GoToUrl(formUrlTextbox.Text);
             }
 
             if (page.Contains("Scheme is available"))
             {
+                try { WaitForElement(driver, By.Id("ContentPlaceHolder1_applyNowButton"), 5); } catch { }
                 driver.FindElement(By.Id("ContentPlaceHolder1_applyNowButton")).Click();  //Click APPLY NOW
 
                 string pageContent = driver.FindElement(By.Id("form1")).Text;
                 if (pageContent.Contains("Multiple applications are not supported."))
                 {
-                    Options(driver);
+                    try { Options(driver); }
+                    catch
+                    {
+                        driver.Navigate().GoToUrl(formUrlTextbox.Text);
+                        Options(driver);
+                    }
                 }
                 else
                 {
-                    //FilloutTheForms(driver, submitUrl);
+                    try { FilloutTheForms(driver); }
+                    catch
+                    {
+                        driver.Navigate().GoToUrl(formUrlTextbox.Text);
+                        FilloutTheForms(driver);
+                    }
                 }
-
 
             }
 
@@ -177,8 +199,8 @@ namespace CodeRunner
         //Decide which step to go when form exists
         public void Options(IWebDriver driver)
         {
-            var baseUrl = "https://onlineservices.immigration.govt.nz/WorkingHoliday/";
-            driver.Navigate().GoToUrl(baseUrl);
+           
+            driver.Navigate().GoToUrl(baseUrlTextbox.Text);
 
             string myreference = driver.FindElement(By.Id("ContentPlaceHolder1_applicationList_applicationsDataGrid_referenceNumberLabel_0")).Text;
             string mystatus = driver.FindElement(By.Id("ContentPlaceHolder1_applicationList_applicationsDataGrid_statusLabel_0")).Text;
@@ -191,28 +213,45 @@ namespace CodeRunner
             {
                 try { driver.FindElement(By.Id("ContentPlaceHolder1_applicationList_applicationsDataGrid_editHyperLink_0")).Click(); }
                 catch { driver.Navigate().GoToUrl(editUrl); }
-              
-                FilloutTheForms(driver);
+
+                try { FilloutTheForms(driver); }
+                catch
+                {
+                    driver.Navigate().GoToUrl(baseUrlTextbox.Text);
+                    Options(driver);
+                }
                 
             }
             else if (mystatus == "Completed pending submission") //Form not submitted
             {
                 try { driver.FindElement(By.Id("ContentPlaceHolder1_applicationList_applicationsDataGrid_submitHyperlink_0")).Click(); }
-                catch { driver.Navigate().GoToUrl(submitUrl); } 
-                Submit(driver);
+                catch { driver.Navigate().GoToUrl(submitUrl); }
+
+                try { Submit(driver); }
+                catch
+                {
+                    driver.Navigate().GoToUrl(baseUrlTextbox.Text);
+                    Options(driver);
+                }
             }
 
             else if (mystatus == "Submitted") //Form not paid
             {
                 try { driver.FindElement(By.Id("ContentPlaceHolder1_applicationList_applicationsDataGrid_payHyperLink_0")).Click(); }
                 catch { }
-                PaySteps(driver);
+                try { PaySteps(driver); }
+                catch
+                {
+                    driver.Navigate().GoToUrl(baseUrlTextbox.Text);
+                    Options(driver);
+                }
             }
         }
 
         //Looping the forms filing 
         public void FilloutTheForms(IWebDriver driver)
         {
+            string currentUrl = driver.Url;
             IWebElement personalTab = driver.FindElement(By.Id("ContentPlaceHolder1_wizardPageHeader_nav_sectionTabs_TabHeaders_tabButton_0"));
             IWebElement healthTab = driver.FindElement(By.Id("ContentPlaceHolder1_wizardPageHeader_nav_sectionTabs_TabHeaders_tabButton_1"));
             IWebElement characterTab = driver.FindElement(By.Id("ContentPlaceHolder1_wizardPageHeader_nav_sectionTabs_TabHeaders_tabButton_2"));
@@ -240,25 +279,59 @@ namespace CodeRunner
             }
             if (personalTabImage.GetAttribute("src").Contains("SectionCross"))
             {
-                personalTab.Click();
-                Personal(driver);
+                try
+                {
+                   
+                    personalTab.Click();
+                    Personal(driver);
+                }
+                catch
+                {
+                    driver.Navigate().GoToUrl(currentUrl);
+                    FilloutTheForms(driver);
+                }
+                
             }
             if (healthTabImage.GetAttribute("src").Contains("SectionCross"))
             {
-                healthTab.Click();
-                Health(driver);
+                try
+                {
+                    healthTab.Click();
+                    Health(driver);
+                }
+                catch
+                {
+                    FilloutTheForms(driver);
+                }
+              
             }
             if (characterTabImage.GetAttribute("src").Contains("SectionCross"))
             {
-                //Fillout Character
-                characterTab.Click();
-                Character(driver);
+                try
+                {
+                    //Fillout Character
+                    characterTab.Click();
+                    Character(driver);
+                }
+                catch
+                {
+                    FilloutTheForms(driver);
+                }
+
+              
             }
             if (specificTabImage.GetAttribute("src").Contains("SectionCross"))
             {
-                //Fillout Specific
-                specificTab.Click();
-                Specific(driver);
+                try
+                {
+                    //Fillout Specific
+                    specificTab.Click();
+                    Specific(driver);
+                }
+                catch
+                {
+                    FilloutTheForms(driver);
+                }
             }
 
 
@@ -520,9 +593,13 @@ namespace CodeRunner
             }
 
             //Becareful
-            //driver.FindElement(By.Id("ContentPlaceHolder1_submitImageButton")).Click();
-
-            try { PaySteps(driver); }
+          
+            try
+            {
+                driver.FindElement(By.Id("ContentPlaceHolder1_submitImageButton")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_payAnchor")).Click();
+                PaySteps(driver);
+            }
             catch {
 
                 driver.Navigate().GoToUrl(currentUrl);
@@ -541,12 +618,12 @@ namespace CodeRunner
             driver.FindElement(By.Id("_ctl0_ContentPlaceHolder1_payerNameTextBox")).EnterValue(cardHolderTextBox.Text);
             driver.FindElement(By.Id("_ctl0_ContentPlaceHolder1_okButton")).Click();
 
-
-            switch (visaType.Text.ToUpper())
+            string payCardSelect = (paymentCardSelect.SelectedItem as ComboBoxItem).Name.ToString();
+            switch (payCardSelect)
             {
-                case "M": driver.FindElement(By.Id("card_type_MASTERCARD")).Click(); break;
-                case "V": driver.FindElement(By.Id("card_type_VISA")).Click(); break;
-                    //default: break;
+                case "Master": driver.FindElement(By.Id("card_type_MASTERCARD")).Click(); break;
+                case "Visa": driver.FindElement(By.Id("card_type_VISA")).Click(); break;
+               
             }
 
 
@@ -576,13 +653,7 @@ namespace CodeRunner
 
         }
 
-        private void SubmitPayOnly(object sender, RoutedEventArgs e)
-        {
-
-            IWebDriver driver = new ChromeDriver();
-            StartNow(driver);
-        }
-
+     
 
 
         //private static void DropdownSelect(IWebDriver driver, string identifier, string keyword, int index)

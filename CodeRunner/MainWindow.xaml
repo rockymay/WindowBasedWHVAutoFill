@@ -1,7 +1,7 @@
 ﻿<Window x:Name="WHVAutoFill" x:Class="CodeRunner.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Working Holiday Application AutoFill 1.0  Coded by RockyMay" Height="664" Width="855" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" WindowStyle="ThreeDBorderWindow"  WindowStartupLocation="CenterScreen" MinWidth="860" MinHeight="710" Icon="profile.ico" MaxWidth="860" MaxHeight="710">
+        Title="Working Holiday Application AutoFill 1.1  Coded by RockyMay" Height="664" Width="855" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" WindowStyle="ThreeDBorderWindow"  WindowStartupLocation="CenterScreen" MinWidth="860" MinHeight="710" Icon="profile.ico" MaxWidth="860" MaxHeight="710" FontFamily="Arial">
     <Grid Margin="10,0,28,14">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
@@ -13,19 +13,19 @@
         <Canvas Margin="34,20,112,642" Grid.ColumnSpan="4">
 
             <Label x:Name="label" Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18"/>
-            <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="31"/>
+            <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="47"/>
             <Label x:Name="label_Copy1" Content="Retry No." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Top="57" Visibility="Hidden"/>
-            <Label x:Name="label_Copy2" Content="URL-1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235"/>
-            <Label x:Name="label_Copy3" Content="URL-2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235" Canvas.Top="57"/>
+            <Label x:Name="label_Copy2" Content="URL1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235"/>
+            <Label x:Name="label_Copy3" Content="URL2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Canvas.Left="235" Canvas.Top="40"/>
 
             <TextBox x:Name="usernameTextBox" TextWrapping="Wrap"
-                FontSize="14" Height="25" VerticalAlignment="Center" Canvas.Left="102" Width="120" Text="wangchenc001" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                FontSize="14" Height="30    " VerticalAlignment="Center" Canvas.Left="102" Width="120" Text="wangchenc001" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="passwordTextBox" TextWrapping="Wrap"
-                FontSize="14" Height="25" VerticalAlignment="Top" Canvas.Left="102" Canvas.Top="31" Width="120" HorizontalAlignment="Left" Text="Wang2017god" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="url1TextBox" TextWrapping="Wrap"
-                FontSize="14" Height="52" VerticalAlignment="Top" Canvas.Left="298" Width="453" Text="https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=46"/>
-            <TextBox x:Name="url2TextBox" TextWrapping="Wrap"
-                FontSize="14" Height="26" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.346" Canvas.Left="298" Canvas.Top="64" Width="453" Text="http://onlineservices.immigration.govt.nz" />
+                FontSize="14" Height="30    " VerticalAlignment="Top" Canvas.Left="102" Canvas.Top="47" Width="120" HorizontalAlignment="Left" Text="Wang2017god" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="formUrlTextbox" TextWrapping="Wrap"
+                FontSize="14" Height="40" VerticalAlignment="Top" Canvas.Left="298" Width="453" Text="https://onlineservices.immigration.govt.nz/WorkingHoliday/Application/Create.aspx?CountryId=46" IsReadOnlyCaretVisible="True"/>
+            <TextBox x:Name="baseUrlTextbox" TextWrapping="Wrap"
+                FontSize="14" Height="30" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.346" Canvas.Left="298" Canvas.Top="47" Width="453" Text="https://onlineservices.immigration.govt.nz/WorkingHoliday/" IsReadOnlyCaretVisible="True" />
             <TextBox x:Name="attempNo" TextWrapping="Wrap"
                 FontSize="18" Height="25" VerticalAlignment="Top" Width="120" Text="10" HorizontalAlignment="Right" FontWeight="Bold" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Canvas.Left="102" Canvas.Top="65" VerticalContentAlignment="Center" Visibility="Hidden">
                 <TextBox.RenderTransform>
@@ -118,7 +118,7 @@
         <CheckBox x:Name="beenCheckBox" Content="Been to NZ?" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="135" FontSize="18" Canvas.Left="54" Grid.ColumnSpan="2" Grid.Column="2" Margin="95,278,0,0" Checked="beenCheckBox_Checked" Unchecked="beenCheckBox_Unchecked"/>
 
         <Canvas Margin="58,279,262,295" Grid.Column="2" Grid.ColumnSpan="2" Name="beentoNZGrid" Visibility="Hidden">
-           <Label Content="Month" HorizontalAlignment="Left" 
+            <Label Content="Month" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Top="57"/>
             <Label Content="Year" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="1.849,0.394" Canvas.Left="15" Canvas.Top="86"/>
@@ -141,27 +141,31 @@
 
         </Canvas>
         <!--Intend Travel Date-->
-        <Canvas Grid.Column="3" Margin="173,278,28,296" Grid.ColumnSpan="2">
-            <TextBox x:Name="cardHolderTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="5"/>
-            <TextBox x:Name="visaType" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="V" Canvas.Left="98" Canvas.Top="28" MaxLength="1" MaxLines="2"/>
+        <Canvas Grid.Column="3" Margin="173,285,28,215" Grid.ColumnSpan="2">
+            <TextBox x:Name="cardHolderTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="25"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Height="25" Width="120
+" SelectedIndex="0" Name="paymentCardSelect" RenderTransformOrigin="1.566,6.88" Canvas.Left="98" Canvas.Top="-5">
+                <ComboBoxItem Content="Visa" Name="Visa"></ComboBoxItem>
+                <ComboBoxItem Content="Master" Name="Master"></ComboBoxItem>
+
+            </ComboBox>
             <TextBox x:Name="cardNoTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="51"/>
             <TextBox x:Name="cardMonthTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="74" MaxLength="2"/>
             <TextBox x:Name="cardYearTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="97" MaxLength="4"/>
             <TextBox x:Name="cardCVCTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="98" Canvas.Top="120" MaxLength="3"/>
-            <Label x:Name="cardHolderName" Content="Card Holder" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="18"/>
+            <Label x:Name="cardHolderName" Content="Card Holder" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="12" Canvas.Top="25"/>
             <Label x:Name="label2_Copy" Content="Card No" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.138,0.52" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="40" Canvas.Top="51"/>
             <Label x:Name="label2_Copy1" Content="Card Month" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="19" Canvas.Top="74"/>
             <Label x:Name="label2_Copy2" Content="Card Year" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="27" Canvas.Top="97"/>
             <Label x:Name="label2_Copy3" Content="CVC" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Left="59" Canvas.Top="120"/>
-            <Label x:Name="label2_Copy4" Content="VisaType: V/M" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Top="28"/>
-            <Button x:Name="button" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" FontSize="18" Click="SubmitPayOnly" Height="40" Canvas.Left="38" Canvas.Top="197"/>
+            <Label x:Name="label2_Copy4" Content="VisaType: V/M" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFFB1111" FontWeight="Bold" Canvas.Top="-5"/>
             <Button x:Name="btnGo" Content="Go!" 
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                Click="RunCode" FontSize="18" Width="90" Height="40" Canvas.Left="128" Canvas.Top="197"/>
-            <Button x:Name="btnClear" Content="Clear" 
-                Click="ClearOutput" FontSize="18" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="38" Canvas.Top="237" />
+                Click="RunCode" FontSize="18" Width="90" Height="80" Canvas.Left="128" Canvas.Top="197"/>
+            <Button x:Name="btnClear" Content="RESET" 
+                Click="ClearOutput" FontSize="18" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="38" Canvas.Top="197" />
             <Button x:Name="loadTestData" Content="load test data" 
-                Click="loadTestData_Click" FontSize="14" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="128" Canvas.Top="237" />
+                Click="loadTestData_Click" FontSize="14" Width="90" RenderTransformOrigin="-0.038,0.111" Height="40" Canvas.Left="38" Canvas.Top="237" />
         </Canvas>
         <!--Payment Detail-->
         <TextBox x:Name="outText" HorizontalAlignment="Left" Height="57" Margin="6,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="808" VerticalScrollBarVisibility="Visible" FontSize="10" VerticalContentAlignment="Bottom" Grid.ColumnSpan="5" />
